@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "ledger-entry.schema.json",
+  "title": "Ledger entry",
+  "description": "One entry from `ledger-lite export --json`; mirrors Transaction in ledger-lite src/ledger.ts.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Transaction id, e.g. tx-1."
+    },
+    "accountId": {
+      "type": "string",
+      "description": "Id of the account the entry belongs to."
+    },
+    "amount": {
+      "type": "integer",
+      "not": { "const": 0 },
+      "description": "Amount in cents. Positive = deposit, negative = withdrawal."
+    },
+    "date": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+      "description": "ISO date, YYYY-MM-DD."
+    },
+    "memo": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string"
+    }
+  },
+  "required": ["id", "accountId", "amount", "date", "memo"],
+  "additionalProperties": false
+}
