@@ -1,0 +1,17 @@
+name: changelog
+on: pull_request
+jobs:
+  changelog:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: The pull request adds a line to CHANGELOG.md
+        run: |
+          if git diff --name-only origin/${{ github.base_ref }}...HEAD | grep -qx CHANGELOG.md; then
+            echo "CHANGELOG.md updated"
+          else
+            echo "CHANGELOG.md not updated: add one line to CHANGELOG.md describing this change"
+            exit 1
+          fi
