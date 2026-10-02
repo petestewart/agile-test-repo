@@ -28,6 +28,11 @@
     },
     "category": {
       "type": "string"
+    },
+    "price": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Unit price in cents, e.g. 1099 = $10.99."
     }
   },
   "required": ["id", "accountId", "amount", "date", "memo"],
